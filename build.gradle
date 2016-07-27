@@ -1,5 +1,5 @@
 group 'com.ppolivka.namegenerator'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 task wrapper(type: Wrapper) {
   gradleVersion = '2.13'
@@ -14,10 +14,13 @@ buildscript {
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.2-1"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath group: 'com.layer', name: 'gradle-git-repo-plugin', version: '2.0.2'
   }
 }
 
 apply plugin: 'kotlin'
+apply plugin: 'maven'
+apply plugin: 'git-repo'
 
 dependencies {
   compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.2-1"
@@ -30,3 +33,11 @@ repositories {
 sourceSets {
   main.java.srcDirs += 'src/main/kotlin'
 }
+
+uploadArchives {
+  repositories.mavenDeployer {
+    repository(url: "file:///Personal/git/maven-repository")
+  }
+}
+
+
