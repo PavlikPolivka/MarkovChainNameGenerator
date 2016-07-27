@@ -42,7 +42,7 @@ class KatzBackoffGenerator(data: Set<String>, order: Int, prior: Float) : Genera
    *
    * The prior adds a constant probability that a random letter is picked from the alphabet when generating a new letter.
    */
-  private var prior:Float = 1.0f
+  private var prior:Float = 0.001f
 
   init {
     this.order = order
@@ -70,7 +70,7 @@ class KatzBackoffGenerator(data: Set<String>, order: Int, prior: Float) : Genera
       }
       letter = letter(word)
     }
-    return word.substring(2)
+    return word.substring(order)
   }
 
   /**
