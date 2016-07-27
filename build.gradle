@@ -1,0 +1,32 @@
+group 'com.ppolivka.namegenerator'
+version '1.0-SNAPSHOT'
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.13'
+  distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+buildscript {
+  ext.kotlin_version = '1.0.3'
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.2-1"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+apply plugin: 'kotlin'
+
+dependencies {
+  compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.2-1"
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  testCompile 'junit:junit:4.12'
+}
+repositories {
+  mavenCentral()
+}
+sourceSets {
+  main.java.srcDirs += 'src/main/kotlin'
+}
